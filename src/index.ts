@@ -11,8 +11,9 @@ export type Args = {
   ignoreFile?: string
 }
 
-export function parseArgs(program: string, args?: string[]): Args {
+export function parseArgs(callerDirname: string, args?: string[]): Args {
   if (!args) args = argv.slice(2)
+  const pkg = require(join(dirname(callerDirname), "package.json"))
   let dryRun = false
   let glob: string | undefined
   let ignoreFile: string | undefined
@@ -26,13 +27,14 @@ export function parseArgs(program: string, args?: string[]): Args {
       i++
       ignoreFile = args[i]
     } else if (arg === "--version") {
-      printVersion()
+      console.log(pkg.version)
+      exit(0)
     } else {
-      printHelp(program)
+      printHelp(pkg.name)
     }
   }
   if (!glob) {
-    printHelp(program)
+    printHelp(pkg.name)
   }
   return {
     dryRun,
@@ -41,16 +43,11 @@ export function parseArgs(program: string, args?: string[]): Args {
   }
 }
 
-function printVersion() {
-  console.log(require("./package.json").version)
-  exit(0)
-}
-
-function printHelp(program: string) {
+function printHelp(name: string) {
   console.log(`Usage:
-  ${program} (--check | --write) <glob> [--ignorefile <file>]
-  ${program} --version
-  ${program} --help`)
+  ${name} (--check | --write) <glob> [--ignorefile <file>]
+  ${name} --version
+  ${name} --help`)
   exit(0)
 }
 

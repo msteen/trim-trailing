@@ -3,6 +3,6 @@ export declare type Args = {
     glob: string;
     ignoreFile?: string;
 };
-export declare function parseArgs(program: string, args?: string[]): Args;
+export declare function parseArgs(callerDirname: string, args?: string[]): Args;
 export declare function editFiles(args: Args, edit: (contents: string) => string): Promise<void>;
 //# sourceMappingURL=index.d.ts.map
