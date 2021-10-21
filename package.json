@@ -1,0 +1,30 @@
+{
+  "name": "trim-trailing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Trim the trailing whitespace of files",
+  "main": "lib/index.js",
+  "bin": "lib/bin.js",
+  "keywords": [
+    "trim",
+    "trailing",
+    "whitespace"
+  ],
+  "author": {
+    "name": "Matthijs Steen",
+    "email": "emailmatthijs@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/node": "^16.7.10",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "glob": "^7.2.0",
+    "glob-base": "^0.3.0",
+    "globify-gitignore": "^0.2.1",
+    "prettier": "^2.4.1"
+  }
+}
